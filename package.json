@@ -1,16 +1,15 @@
 {
-  "dependencies": {
-    "nodemon": "^2.0.20"
-  },
   "name": "api-rest-express-mongodb",
   "description": "",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
