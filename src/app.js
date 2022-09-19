@@ -1,21 +1,35 @@
+import express from 'express';
 
-const http = require('http');
-const port = 3000;
+const app = express();
 
-const rotas = {
-    '/': 'Curso NodeJS',
-    '/livros': 'Página de Livros',
-    '/autores': 'Listagem de Autores'
-};
+app.use(express.json);
 
-const server = http.createServer((req, res) => {
+const livros = [
+    {
+        id: 1,
+        'titulo': 'Senhor dos Aneis'
+    },
+    {
+        id:2,
+        'titulo': 'O Hobbit'
+    }
+];
 
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-
-    res.end(rotas[req.url]);
+app.get('/', (req, res) => {
+    res.status(200).send('Curso de NodeJs');
 
 });
 
-server.listen(port, () => {
-    console.log('Server rodando na porta:', port);
+app.get('/livros', (req, res) => {
+    res.status(200).json(livros);
+
 });
+
+app.post('/livros', (req, res) => {
+    livros.push(req.body);
+
+    res.status(201).send('Livro cadastrado com sucesso!!!');
+
+});
+
+export default app
