@@ -2,7 +2,7 @@ import express from 'express';
 
 const app = express();
 
-app.use(express.json);
+app.use(express.json());
 
 const livros = [
     {
@@ -25,6 +25,15 @@ app.get('/livros', (req, res) => {
 
 });
 
+app.get('/livros/:id', (req, res) => {
+
+    let {id} = req.params
+
+    let index = buscaLivro(id);
+
+    res.json(livros[index]);
+});
+
 app.post('/livros', (req, res) => {
     livros.push(req.body);
 
@@ -32,4 +41,30 @@ app.post('/livros', (req, res) => {
 
 });
 
-export default app
+app.put('/livros/:id', (req, res) => {
+
+    let {id} = req.params
+
+    let index = buscaLivro(id);
+
+    livros[index].titulo = req.body.titulo;
+
+    res.json(livros);
+});
+
+app.delete('/livros/:id', (req, res) => {
+
+    let {id} = req.params
+
+    let index = buscaLivro(id);
+
+    livros.splice(index, 1);
+
+    res.send(`Livro ${id} removido com sucesso!!!`);
+});
+
+function buscaLivro(id){
+    return livros.findIndex(livro => livro.id == id);
+};
+
+export default app;
