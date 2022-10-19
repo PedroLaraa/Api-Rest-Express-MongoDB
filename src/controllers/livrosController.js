@@ -58,7 +58,7 @@ class LivroController{
                 res.status(200).send({message: 'Livro deletado com sucesso!!!'})
             } else{
                 res.status(500).send({message: `${err} - Falha ao deletar livro!`})
-            }
+            };
         })
     };
 

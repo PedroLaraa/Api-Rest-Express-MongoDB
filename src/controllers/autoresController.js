@@ -1,4 +1,4 @@
-import Autor from "../models/Livro.js";
+
 import autores from "../models/Autor.js";
 
 class AutorController{
